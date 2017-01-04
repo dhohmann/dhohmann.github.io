@@ -1,0 +1,27 @@
+.header {
+	text-align: center;
+}
+.subheader {
+	text-align: center;
+}
+.sidemenu ul {
+	list-style-type: none;
+	padding: 0;
+	float: left;
+	clear: left;
+}
+.sidemenu a{
+	text-decoration: none;
+	color: #000000;
+}
+.list-heading {
+	margin-top: 10%;
+	font-size: 20;
+}
+
+body {
+	background-color: #33ccff;
+	font-family: Vedana, sans-serif;
+}
+
+
