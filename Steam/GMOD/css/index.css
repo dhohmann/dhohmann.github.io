@@ -1,0 +1,61 @@
+@CHARSET "ISO-8859-1";
+body {
+	font-family: Times New Roman;
+	background-image: url("../img/background.jpg");
+	background-attachment: fixed;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	width: 100%;
+}
+.title {
+	width: 100%;
+	text-align: center;
+}
+.leftcontent {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0.5);
+	border-style: hidden;
+	border-radius: 2px;
+	width: 40%;
+	height: 90%;
+	float: left;
+	padding-bottom: 1%;
+	padding-left: 1%;
+	padding-right: 1%;
+	padding-top: 1%;
+}
+.rightcontent {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0.5);
+	border-style: hidden;
+	border-radius: 2px;
+	width: 50%;
+	height: 90%;
+	float: right;
+	padding-bottom: 1%;
+	padding-left: 1%;
+	padding-right: 1%;
+	padding-top: 1%;
+	position: relative;
+}
+.paragraph {
+	padding: 1% 1% 1% 1%;
+}
+.paragraph ul {
+	margin-top: 0%;
+	padding-buttom: 0%;
+	padding-top: 0%;
+}
+.paragraph h3 {
+	margin : 0 0 0 0;
+}
+.paragraph ul li {
+	margin-top: 1%;
+}
+
+.content{
+	overflow: auto;
+	height: 100%;
+}
