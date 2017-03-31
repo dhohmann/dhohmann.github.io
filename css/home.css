@@ -1,0 +1,21 @@
+.article {
+	background-color: #f1f1f1;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+.article .date {
+	font-style: italic;
+	color: #414141;
+}
+.article .author {
+	font-style: italic;
+	color: #414141;	
+}
+.article .information {
+	text-align: center;
+}
+.article .text h1 {
+	margin-top: 0;
+}
+
+

@@ -1,0 +1,155 @@
+.content-table {
+	background-color: #f1f1f1;
+	margin-top: 5px;
+}
+.content-table ul {
+	list-style: none;
+	padding: 0;
+}
+.content-table li a {
+	color: black;
+	display: block;
+	padding: 5px 5px 5px 5px;
+}
+.content-table li a:hover{
+	background-color: #f9f9f9;
+}
+
+.content-title {
+	float: left;
+	font-size: 32px;
+	font-weight: bold;
+	font-style: italic;
+	width: 100%;
+	padding: 12px 12px 12px 12px;
+	background-color: black;
+	color: white;
+}
+
+.gmod-addon {
+	overflow: hidden;
+	background-color: #f1f1f1;
+	padding: 12px 12px 12px 12px;
+	margin: 5px 5px 5px 5px;
+}
+
+.gmod-addon .image {
+	width: 100%;
+	height: auto;
+	float: left;
+	padding: 12px 12px 12px 12px;
+	display: none;
+}
+.gmod-addon .name {
+	text-align: center;
+	font-style: bold;
+	font-size: 24;
+	float: left;
+	width: 100%;
+	padding: 12px 12px 12px 12px;
+}
+.gmod-addon .workshop {
+	float: left;
+	width: 100%;
+	text-align: center;
+	text-decoration: none;
+	padding: 12px 12px 12px 12px;
+}
+.gmod-addon .description {
+	float: left;
+	padding: 12px 12px 12px 12px;
+}
+
+.gmod-item .pros {
+	float: left;
+	width: 100%;
+	padding: 12px 12px 12px 12px;
+	background-color: #66ff99;
+}
+.gmod-item .cons {
+	float: left;
+	width: 100%;
+	padding: 12px 12px 12px 12px;
+	background-color: #ffcccc;
+}
+.gmod-item .hints {
+	float: left;
+	width: 100%;
+	padding: 12px 12px 12px 12px;
+}
+
+.gmod-addon .compare {
+	float: left;
+	width: 100%;
+	display: flex;
+}
+
+.gmod-map .features {
+	float: left;
+	width: 100%;
+}
+
+@media only screen and (min-width: 700px){
+
+	.gmod-addon .image {
+		width: 100%;
+		display: block;
+	}
+	.gmod-addon .name {
+		width: 100%;
+	}
+	.gmod-addon .workshop {
+		width: 100%;
+	}
+	.gmod-addon .description {
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width: 900px){
+	.gmod-addon .image {
+		width: 25%;
+	}
+	.gmod-addon .name {
+		width: 75%;
+	}
+	.gmod-addon .workshop {
+		width: 75%;
+	}
+	.gmod-addon .description {
+		width: 75%;
+	}
+	.gmod-addon .pros {
+		width: 50%;
+	}
+	.gmod-addon .cons {
+		width: 50%;
+	}
+	.gmod-addon .hints {
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width: 1200px){
+	.gmod-addon .image {
+		width: 25%;
+	}
+	.gmod-addon .name {
+		width: 75%;
+	}
+	.gmod-addon .workshop {
+		width: 75%;
+	}
+	.gmod-addon .description {
+		width: 75%;
+	}
+	.gmod-addon .pros {
+		width: 50%;
+	}
+	.gmod-addon .cons {
+		width: 50%;
+	}
+	.gmod-addon .hints {
+		width: 100%;
+	}
+}

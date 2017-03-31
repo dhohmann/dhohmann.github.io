@@ -1,7 +1,6 @@
-@CHARSET "ISO-8859-1";
 body {
 	font-family: Times New Roman;
-	background-image: url("../img/background.jpg");
+	background-image: url("../data/gmod/bg-loadingscreen.jpg");
 	background-attachment: fixed;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
