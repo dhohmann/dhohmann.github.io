@@ -107,46 +107,47 @@
 			<hint>Very useful in rounds with many players.</hint>
 		</Item>
 		<Item type="item" workshopId="654570222" name="Banana Bomb">
-			<description>This addon adds a custom grenade to the traitor shop. The items splits into multiple parts after being thrown.</description>
+			<description>This addon adds a custom grenade to the traitor shop. The item splits into multiple parts after being thrown.</description>
 			<pro>The item deals a lot of damage.</pro>
 			<con>It takes much time for the detonation.</con>
 			<hint>Should only be used for fun.</hint>
 		</Item>
 		<Item type="item" workshopId="764748780" name="Poison Dart Gun">
-			<description></description>
-			<pro></pro>
-			<con></con>
-			<hint></hint>
+			<description>This addons adds a custom weapon to the traitor shop. If the player lands a hit on another player, the victim will be damaged every second until death.</description>
+			<pro>The weapon is silenced, so the shot cannot be heard.</pro>
+			<pro>The traitor can cause a lot of pressure on the innocents.</pro>
+			<con>It takes a long time to reload the gun.</con>
+			<hint>Try to poison all innocents. Then you can lay back and watch them die.</hint>
 		</Item>
 		<Item type="item" workshopId="423837419" name="Traitor Bio Weapon">
-			<description></description>
-			<pro></pro>
-			<con></con>
-			<hint></hint>
+			<description>TODO</description>
+			<pro>TODO</pro>
+			<con>TODO</con>
+			<hint>TODO</hint>
 		</Item>
 		<Item type="item" workshopId="712797820" name="Tripwire Mine">
-			<description></description>
-			<pro></pro>
-			<con></con>
+			<description>This addon adds a custom weapon to the traitor shop. It is a mine that can be placed on every solid surface. Whenever an innocent or an object crosses the beam of light, the mine explodes.</description>
+			<pro>Normally, this mine does not kill the traitor.</pro>
+			<con>The traitor can activate the mine, when he crosses the beam with an object or his weapon.</con>
 			<hint></hint>
 		</Item>
 		 <Item type="item" workshopId="639521512" name="Boomerang">
-			<description></description>
-			<pro></pro>
-			<con></con>
-			<hint></hint>
+			<description>This addons adds a custom weapon to the traitor shop. The boomerang can silently kill people, even from a greater distance. It can be used multiple times.</description>
+			<pro>This items is nearly quiet.</pro>
+			<con>It is pretty hard to identify the item in your hands.</con>
+			<hint>It is not suitable for a group of players, although you can kill multiple people with a single strike.</hint>
 		</Item>
 		 <Item type="item" workshopId="611873052" name="Mirror Fate">
-			<description></description>
-			<pro></pro>
-			<con></con>
-			<hint></hint>
+			<description>This addons adds a custom item to the traitor shop. The item kills the user's killer after 30 seconds.</description>
+			<pro>You can help your team, even if you are dead.</pro>
+			<con>It is useless when you are alone.</con>
 		</Item>
 		 <Item type="item" workshopId="794651430" name="Thriller Dart Gun">
-			<description></description>
-			<pro></pro>
-			<con></con>
-			<hint></hint>
+			<description>This addon adds a custom weapon to the traitor shop. It will stun the player when the shot hits the target. After playing a part of Thriller from Michael Jackson, the target dies.</description>
+			<pro>You have multiple shots.</pro>
+			<con>The target does not die instantly.</con>
+			<hint>The player can talk until he or she is dead. Attack the target from behind.</hint>
+			<hint>TODO Semiautomatic?</hint>
 		</Item>
 		 <Item type="item" workshopId="617179823" name="Random / Fake Tester">
 			<description></description>
@@ -289,7 +290,9 @@
 		</Map>
 		 <Map type="map" workshopId="295897079" name="Lego">
 			<description></description>
-			<feature></feature>
+			<feature>Traitor Room</feature>
+			<feature>Not working Traitor Tester</feature>
+			<feature>Multiple traps</feature>
 		</Map>
 		 <Map type="map" workshopId="118937144" name="LTTP Kakariko">
 			<description></description>
@@ -345,15 +348,19 @@
 		</Map>
 		 <Map type="map" workshopId="379662785" name="Pac Man V1">
 			<description></description>
-			<feature></feature>
+			<feature>Traitor Room</feature>
+			<feature>Teleports</feature>
+			<feature>Ghosts as traitor traps</feature>
+			<feature>Red button at the start makes the ghosts vulnerable.</feature>
 		</Map>
 		 <Map type="map" workshopId="465702015" name="Traitor Express">
 			<description></description>
-			<feature></feature>
+			<feature>Traitor Room</feature>
+			<feature>Easy to loose dead bodies.</feature>
 		</Map>
 		 <Map type="map" workshopId="301282824" name="Southpark">
 			<description></description>
-			<feature></feature>
+			<feature>Not many weapons.</feature>
 		</Map>
 		 
 	</maps>
