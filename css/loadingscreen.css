@@ -7,6 +7,8 @@ body {
 	top: 50%;
 	left: 50%;
 	/* bring your own prefixes */
+	-ms-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	box-shadow: 10px 10px 5px #888888;
 }
@@ -32,9 +34,10 @@ body {
 	color: white;
 	animation: color-change 5s linear infinite;
 }
-
-@keyframes spin {
+@-webkit-keyframes spin {
     0% { 
+		-ms-transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
 	}
 	33% {
@@ -44,8 +47,40 @@ body {
 		border-top-color: #ffff33;
 	}
     100% { 
+		-ms-transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
 		transform: rotate(360deg); 	
 		border-top-color: #33ccff;		
+	}
+}
+@keyframes spin {
+    0% { 
+		-ms-transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	33% {
+		border-top-color: #ff3333;
+	}
+	66% {
+		border-top-color: #ffff33;
+	}
+    100% { 
+		-ms-transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg); 	
+		border-top-color: #33ccff;		
+	}
+}
+@-webkit-keyframes color-change {
+	0% {
+		color: white;
+	}
+	50% {
+		color: black;
+	}
+	100% {
+		color: white;
 	}
 }
 @keyframes color-change {
