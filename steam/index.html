@@ -3,55 +3,274 @@
 		<meta charset="utf-8">
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-		<title>Steam</title>
-		<link rel="stylesheet" href="css/ux-default.css">
-		<script type="text/javascript" src="js/index.js"></script>
+		<title>Steam Overlay Beta</title>
+		<!-- UI KIT -->
+		<link rel="stylesheet" type="text/css" href="resources/css/uikit.min.css">
+		<script src="resources/js/jquery-3.2.1.min.js"></script>
+        <script src="resources/js/uikit.min.js"></script>
+		
+		<script type="text/javascript">
+			var storage;
+			function init(){
+				storage = {
+					getItem: function(name, def){
+						return this._store[name] || def;
+					},
+					setItem: function(name, value){
+						this._store[name] = value;
+						if(typeof(Storage) !== "undefined") localStorage.overlay = JSON.stringify(this._store);
+					},
+					_store: [],
+					getInvisibleItem: function(name, def){
+						return this._invisibleStore[name] || def;
+					},
+					setInvisibleItem: function(name, value){
+						this._invisibleStore[name] = value;
+					},
+					_invisibleStore: [],
+					reset: function(){
+						if(typeof(Storage) !== "undefined") localStorage.removeItem("overlay");
+						_store = [];
+						_invisibleStore = [];
+					}
+				}
+				if (typeof(Storage) !== "undefined") {
+					if(!localStorage.overlay) localStorage.overlay = "{}";
+					storage._store = JSON.parse(localStorage.overlay);					
+				} else {
+					storage._store = {};
+					UIkit.modal.alert("The application does not supported by your browser. Some functions will not work.");
+				}
+				var links = storage.getItem("links", [{
+						name: "Google", 
+						url:"https://google.de"
+					}, {
+						name: "Youtube", 
+						url:"https://youtube.de"
+					}, {
+					name: "9GAG", 
+						url:"https://9gag.com/"
+					}, {
+						name: "Steam Community",
+						url: "https://steamcommunity.com"
+					}, {
+						name: "VAC BAN Information",
+						url: "https://www.vac-ban.com"
+					}]);
+				storage.setItem("links", []);
+				for(var i in links){
+					addNewLink(links[i].name, links[i].url);
+				}
+					
+			}
+			function removeElement(e){
+				console.log("element", e);
+				UIkit.modal.confirm("Are you sure?", function(){
+					var links = storage.getItem("links");
+					var doms = storage.getInvisibleItem("domLinks");
+					for(var i in doms){
+						if(doms[i] === e){
+							links.splice(i, 1);
+							storage.setItem("links", links);
+							e.parentNode.removeChild(e);
+							return;
+						}
+					}
+					UIkit.modal.alert("Could not delete the link");
+				});
+				
+				
+			}
+			function onNewLink(){
+				var nameinput = $("#nameinput")[0], urlinput = $("#urlinput")[0]
+				var name = nameinput.value, url = urlinput.value;
+				var error = 0;
+				if(!name || name === "") {
+					nameinput.className += " uk-form-danger";
+					error++;
+				} else {
+					nameinput.className = nameinput.className.replace( /(?:^|\s)uk-form-danger(?!\S)/g , '' );
+				}
+				if(!url || url === "") {
+					urlinput.className += " uk-form-danger";
+					error++;
+				} else {
+					urlinput.className = urlinput.className.replace( /(?:^|\s)uk-form-danger(?!\S)/g , '' );
+				}
+				if(error === 0) {
+					UIkit.modal("#new-link-dialog").hide();
+					addNewLink(name, url);
+				}
+			}
+			function addNewLink(name, url){
+				var linkContainer = document.getElementById("links");
+				var link = document.createElement("div");
+				link.className = "uk-block uk-border-rounded uk-position-relative";
+				if(!url.startsWith("http") && !url.startsWith("www")) url = "http://"+url;
+				link.innerHTML = 
+					'<button class="uk-close uk-close-alt uk-position-top-right" onclick="removeElement(this.parentNode)"></button>' +
+					'<a href="' + url + '" class="uk-display-inline-block" style="width:100%">' +
+						'<h3 class="uk-panel-title">' + name + '</h3>' +
+						'<div class="uk-text-truncate">' + url + '</div>' +
+					'</a>';
+				linkContainer.appendChild(link);
+				
+				var links = storage.getItem("links");
+				links.push({name: name, url: url});
+				storage.setItem("links", links);
+				
+				if(!storage.getInvisibleItem("domLinks", undefined)) {
+					storage.setInvisibleItem("domLinks", []);
+				}
+				storage.getInvisibleItem("domLinks").push(link);
+			}
+			function onReset(){
+				storage.reset();
+				var linkContainer = document.getElementById("links");
+				while (linkContainer.firstChild) {
+					linkContainer.removeChild(linkContainer.firstChild);
+				}
+				init();
+			}
+			
+			window.addEventListener("load", init);
+		</script>
+		<style>
+			.uk-grid> * {
+				padding-right: 25px;
+			}
+			@media (min-width: 1220px){
+				.uk-grid> * {
+					padding-right: 35px;
+				}
+			}
+			.dh-wrapper {
+				min-height:100%;
+				position:relative;
+			}
+			.dh-header {
+				background:#ededed;
+				padding:10px;
+			}
+			.dh-content {
+				padding-bottom:100px; /* Height of the footer element */
+			}
+			.dh-footer {
+				background:#000000;
+				color: #ffffff;
+				width:100%;
+				height:100px;
+				position:absolute;
+				bottom:0;
+				left:0;
+			}			
+			
+		</style>
 	</head>
 	<body>
-		<noscript>
-			<div class="noscript">This site requires JavaScript to work properly.</div>
-		</noscript>
-		<div id="shell" class="ux-ui-Shell">
-			<div class="header">
-				<div class="left">
-					<button type="button" class="add-btn" onclick="onAdd()">Add</button>
-					<button type="button" class="delete-btn" onclick="onRemove()">Remove</button>
-				</div>
-				<div class="center">
-					Steam Overlay - Beta
-				</div>
-				<div class="right">
-					<button type="button" class="reset-btn" onclick="onReset()">Reset</button>
-				</div>
-			</div>
-			<div class="content">
-				<div id="linkcontainer" class="ux-ui-LinkContainer">
-					<div class="links">
-						<div class="ux-ui-Tile">
-							<a href="https://www.google.de">Google</a>
-						</div>
-						<div class="ux-ui-Tile">
-							<a href="https://www.youtube.de">Youtube</a>
-						</div>
-						<div class="ux-ui-Tile">
-							<a href="https://www.facebook.com">Facebook</a>
-						</div>
-						<div class="ux-ui-Tile">
-							<a href="https://steamcommunity.com">Steam Community</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer">
-				<div class="left">
-				</div>
-				<div class="center">
-					<div class="ux-ui-Text">Provided by Daniel Hohmann</div>
-				</div>
-				<div class="right">
-					
+	<div class="dh-wrapper">		
+		<!-- HEADER -->
+		<div class="dh-header">
+			<nav class="uk-nav uk-navbar">
+				<a href="#mobile-menu" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
+				<a href="/" class="uk-navbar-brand">Steam Overlay Beta</a>
+				<ul class="uk-navbar-nav uk-hidden-small">	
+					<li><a href="#new-link-dialog" data-uk-modal><i class="uk-icon-plus"></i> New link</a></li>
+					<li class="uk-parent"><a href="javascript:void(0)" onclick="onReset()"><i class="uk-icon-refresh"></i> Reset</a></li>
+				</ul>
+			</nav>
+
+			<div id="mobile-menu" class="uk-offcanvas">
+				<!-- Mobile devices menu -->
+				<div class="uk-offcanvas-bar">
+					<div class="uk-panel">This function will be added soon. Look forward to the changes.</div>
 				</div>
 			</div>
 		</div>
+		<!-- CONTENT -->
+		<div class="dh-content">
+			<div id="links" class="uk-grid uk-grid-medium uk-grid-width-1-1 uk-grid-width-medium-1-3 uk-grid-width-large-1-4 uk-text-center uk-margin-left uk-margin-right uk-margin-top">
+				<noscript>
+				<div class="uk-block uk-border-rounded uk-position-relative">
+					<button class="uk-close uk-close-alt uk-position-top-right" onclick="removeElement(this.parentNode)"></button>
+					<a href="https://www.google.de" class="uk-display-inline-block" style="width:100%">
+						<h3 class="uk-panel-title">Google</h3>
+						<div class="uk-text-truncate">https://www.google.de</div>
+					</a>
+				</div>
+				
+				<div class="uk-block uk-border-rounded uk-position-relative">
+					<button class="uk-close uk-close-alt uk-position-top-right" onclick="removeElement(this.parentNode)"></button>
+					<a href="https://www.google.de" class="uk-display-inline-block" style="width:100%">
+						<h3 class="uk-panel-title">Youtube</h3>
+						<div class="uk-text-truncate">https://www.youtube.de</div>
+					</a>
+				</div>
+				
+				<div class="uk-block uk-border-rounded uk-position-relative">
+					<button class="uk-close uk-close-alt uk-position-top-right" onclick="removeElement(this.parentNode)"></button>
+					<a href="https://9gag.com/" class="uk-display-inline-block" style="width:100%">
+						<h3 class="uk-panel-title">9GAG</h3>
+						<div class="uk-text-truncate">https://9gag.com/</div>
+					</a>
+				</div>
+				
+				<div class="uk-block uk-border-rounded uk-position-relative">
+					<button class="uk-close uk-close-alt uk-position-top-right" onclick="removeElement(this.parentNode)"></button>
+					<a href="https://steamcommunity.com" class="uk-display-inline-block" style="width:100%">
+						<h3 class="uk-panel-title">Steam Community</h3>
+						<div class="uk-text-truncate">https://steamcommunity.com</div>
+					</a>
+				</div>
+
+				<div class="uk-block uk-border-rounded uk-position-relative">
+					<button class="uk-close uk-close-alt uk-position-top-right" onclick="removeElement(this.parentNode)"></button>
+					<a href="https://www.vac-ban.com" class="uk-display-inline-block" style="width:100%">
+						<h3 class="uk-panel-title">VAC BAN Information</h3>
+						<div class="uk-text-truncate">https://www.vac-ban.com</div>
+					</a>
+				</div>
+				</noscript>
+			</div>			
+		</div>
+		<!-- FOOTER -->
+		<div class="dh-footer uk-flex uk-flex-middle uk-flex-center uk-flex-space-between">
+			<div class="uk-text-center uk-placeholder"></div>
+			<div class="uk-text-center">Provided by dhohmann</div>
+			<div class="uk-text-center">Version 0.5.3</div>
+		</div>
+		<!-- DIALOG -->
+		<div id="new-link-dialog" class="uk-modal" data-uk-modal="{center:true}">
+			<div class="uk-modal-dialog">
+				<a class="uk-modal-close uk-close"></a>
+				<div class="uk-modal-header">
+					<h2>New Link</h2>
+					<p>Please enter a name and the url of the website you want to add to the overlay</p>
+				</div>
+				<div>
+					<form class="uk-form uk-form-horizontal">
+						<div class="uk-form-row">
+							<label for="nameinput" class="uk-form-label">Name</label>
+							<div class="uk-form-controls">
+								<input id="nameinput" type="text" placeholder="Name" class="uk-form-width-large">
+							</div>
+						</div>
+						<div class="uk-form-row">
+							<label for="urlinput" class="uk-form-label">URL</label>
+							<div class="uk-form-controls">
+								<input id="urlinput" type="text" placeholder="Name" class="uk-form-width-large">
+							</div>
+						</div>
+					</form>
+				</div>
+				
+				<div class="uk-modal-footer">
+					<button class="uk-button uk-button-primary" onclick="onNewLink()">Accept</button>
+					<button class="uk-modal-close uk-button">Cancel</button>
+				</div>
+				
+			</div>
+		</div>
+	</div>
 	</body>
 </html>
