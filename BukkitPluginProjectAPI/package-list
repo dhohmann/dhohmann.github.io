@@ -1,5 +1,6 @@
 de.dhohmann.bukkit.core
 de.dhohmann.bukkit.craft
+de.dhohmann.bukkit.craft.listeners
 de.dhohmann.bukkit.craft.recipes
 de.dhohmann.bukkit.info
 de.dhohmann.bukkit.inventory
